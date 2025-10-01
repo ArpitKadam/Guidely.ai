@@ -56,7 +56,12 @@ function renderMessage({ role, content, ts }) {
 
   const bubble = document.createElement("div")
   bubble.className = "bubble"
-  bubble.textContent = content
+    // Render Markdown if assistant, plain text if user
+  if (role === "assistant") {
+    bubble.innerHTML = marked.parse(content)
+  } else {
+    bubble.textContent = content
+  }
 
   const meta = document.createElement("div")
   meta.className = "meta"

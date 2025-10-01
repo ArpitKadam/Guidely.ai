@@ -1665,3 +1665,27 @@ html.dark body::after {
     radial-gradient(800px 400px at 50% 100%, rgba(0, 0, 0, 0.35), transparent 70%);
   z-index: -1;
 }
+
+.msg.assistant .bubble {
+  line-height: 1.5;
+}
+
+.msg.assistant .bubble h1,
+.msg.assistant .bubble h2,
+.msg.assistant .bubble h3 {
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+
+.msg.assistant .bubble ul {
+  margin: 0.5em 0;
+  padding-left: 1.2em;
+}
+
+.msg.assistant .bubble code {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}
