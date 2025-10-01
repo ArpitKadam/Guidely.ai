@@ -3,16 +3,20 @@ import sys
 import traceback
 
 class CustomException(Exception):
-    def __init__(self, error_message: str, error_details: sys):
+    def __init__(self, error_message: str, error_details: sys = sys):
         super().__init__(error_message)
         self.error_message = error_message
 
-        _, _, exc_tb = error_details.exc_info()
-        self.filename = exc_tb.tb_frame.f_code.co_filename if exc_tb else "Unknown"
-        self.lineno = exc_tb.tb_lineno if exc_tb else -1
-        self.traceback_str = "".join(traceback.format_exception(*error_details.exc_info()))
+        if error_details is not None:
+            _, _, exc_tb = error_details.exc_info()
+            self.filename = exc_tb.tb_frame.f_code.co_filename if exc_tb else "Unknown"
+            self.lineno = exc_tb.tb_lineno if exc_tb else -1
+            self.traceback_str = "".join(traceback.format_exception(*error_details.exc_info()))
+        else:
+            self.filename = "Unknown"
+            self.lineno = -1
+            self.traceback_str = "No traceback available."
 
-        # Logging the full traceback
         logger.error(self.__str__())
         logger.error("Traceback:\n" + self.traceback_str)
 

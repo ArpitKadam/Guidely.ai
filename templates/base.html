@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Enhanced Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="{{ project_name | default('Guidely.ai') }} - Your AI-powered travel companion. Get personalized mainstream and off-beat travel plans with weather, costs, and local insights." />
+    <meta name="keywords" content="AI travel planner, travel agent, trip planning, travel recommendations, itinerary generator" />
+    <meta name="author" content="{{ project_name | default('Guidely.ai') }}" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ project_name | default('Guidely.ai') }} — AI Travel Planner" />
+    <meta property="og:description" content="Your AI-powered travel companion. Get personalized mainstream and off-beat travel plans." />
+    <meta property="og:image" content="{{ url_for('static', filename='img/logo.png', _external=True) }}" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="{{ project_name | default('Guidely.ai') }} — AI Travel Planner" />
+    <meta property="twitter:description" content="Your AI-powered travel companion. Get personalized mainstream and off-beat travel plans." />
+    
+    <title>{% block title %}{{ project_name | default("Guidely.ai") }} — AI Travel Planner{% endblock %}</title>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png" />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="{{ url_for('static', filename='css/styles.css') }}" as="style" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" />
+    
+    <!-- Font Loading with Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    
+    <!-- Theme Detection Script (Inline for Performance) -->
+    <script>
+      // Prevent FOUC (Flash of Unstyled Content) by applying theme immediately
+      (function() {
+        const savedTheme = localStorage.getItem('guidely_theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  
+  <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Enhanced Modern Header -->
+    <header class="site-header" id="site-header">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <!-- Brand/Logo Section -->
+        <a class="brand" href="{{ url_for('index') }}" aria-label="{{ project_name | default('Guidely.ai') }} - Home">
+          <img 
+            src="{{ url_for('static', filename='img/logo.png') }}" 
+            alt="{{ project_name | default('Guidely.ai') }} logo" 
+            class="brand-logo"
+            width="32"
+            height="32"
+            loading="eager"
+          />
+          <span class="brand-text">{{ project_name | default("guidely.ai") }}</span>
+        </a>
+        
+        <!-- Navigation Menu -->
+        <div class="nav-content">
+          <ul class="nav-links" role="list">
+            <li>
+              <a 
+                href="{{ url_for('index') }}" 
+                class="{% if request.endpoint == 'index' %}active{% endif %}"
+                aria-current="{% if request.endpoint == 'index' %}page{% else %}false{% endif %}"
+              >
+                <span aria-hidden="true">🏠</span>
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="{{ url_for('about') }}" 
+                class="{% if request.endpoint == 'about' %}active{% endif %}"
+                aria-current="{% if request.endpoint == 'about' %}page{% else %}false{% endif %}"
+              >
+                <span aria-hidden="true">ℹ️</span>
+                About
+              </a>
+            </li>
+            <li>
+              <a 
+                href="{{ url_for('features') }}" 
+                class="{% if request.endpoint == 'features' %}active{% endif %}"
+                aria-current="{% if request.endpoint == 'features' %}page{% else %}false{% endif %}"
+              >
+                <span aria-hidden="true">⭐</span>
+                Features
+              </a>
+            </li>
+            <li>
+              <a 
+                href="{{ url_for('contact') }}" 
+                class="{% if request.endpoint == 'contact' %}active{% endif %}"
+                aria-current="{% if request.endpoint == 'contact' %}page{% else %}false{% endif %}"
+              >
+                <span aria-hidden="true">📞</span>
+                Contact
+              </a>
+            </li>
+          </ul>
+          
+          <!-- Theme Toggle Button -->
+          <button 
+            id="theme-toggle" 
+            class="theme-toggle" 
+            type="button" 
+            aria-pressed="false" 
+            aria-label="Toggle color theme"
+            title="Switch between light and dark mode"
+          >
+            <span class="sr-only theme-toggle-text">Toggle theme</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="container" role="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Enhanced Modern Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-content">
+          <p>
+            © <span id="year"></span> 
+            <strong>{{ project_name | default("Guidely.ai") }}</strong>. 
+            All rights reserved.
+          </p>
+          <p class="small">
+            🤖 AI-powered travel planning • 
+            ⚠️ Always verify costs, weather, and bookings
+          </p>
+          <p class="small">
+            Made with ❤️ using 
+            <span class="gradient-text">LangGraph + FastAPI + Flask</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    
+    <!-- Performance and Analytics (Optional) -->
+    <script>
+      // Add scroll-based header styling
+      window.addEventListener('scroll', function() {
+        const header = document.getElementById('site-header');
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    </script>
+  </body>
+</html>

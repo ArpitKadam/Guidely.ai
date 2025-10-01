@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project_name | default("Guidely.ai") }} — Your AI Travel Companion{% endblock %}
+
+{% block content %}
+  <!-- Stunning Hero Section -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="title">
+        Your AI Travel
+        <br>
+        <span class="gradient-text-accent">Companion</span>
+      </h1>
+      <p class="subtitle">
+        Discover the world with personalized AI-powered travel plans. 
+        Get both mainstream highlights and hidden local gems tailored just for you.
+      </p>
+
+      <ul class="bullets" role="list">
+        <li>
+          <span class="feature-icon">🧠</span>
+          <div>
+            <strong>Smart AI Planning</strong>
+            <small>LangGraph + Groq LLM</small>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">⚡</span>
+          <div>
+            <strong>Lightning Fast</strong>
+            <small>FastAPI backend</small>
+          </div>
+        </li>
+        <li>
+          <span class="feature-icon">🎨</span>
+          <div>
+            <strong>Beautiful Interface</strong>
+            <small>Modern web design</small>
+          </div>
+        </li>
+      </ul>
+      
+      <!-- Call-to-Action Buttons -->
+      <div class="hero-actions">
+        <a href="#chat-section" class="btn btn-primary btn-large">
+          🚀 Start Planning Now
+        </a>
+        <a href="{{ url_for('about') }}" class="btn btn-ghost">
+          Learn More
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-right">
+      <div class="card highlight glass">
+        <div class="card-header">
+          <span class="feature-icon">✨</span>
+          <h3 class="card-title">How Guidely.ai Works</h3>
+        </div>
+        <div class="card-body">
+          <div class="process-steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <span class="step-text">Tell me your destination & preferences</span>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <span class="step-text">AI analyzes weather, costs & attractions</span>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <span class="step-text">Get personalized mainstream & off-beat plans</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">🌍</div>
+          <div class="stat-label">Global Coverage</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">⚡</div>
+          <div class="stat-label">Instant Results</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">🎯</div>
+          <div class="stat-label">Personalized</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Chat Section -->
+  <section id="chat-section" aria-labelledby="chat-heading" class="chat-section">
+    <div class="chat-header">
+      <h2 id="chat-heading" class="section-title text-center">
+        <span class="gradient-text">Chat with Your AI Travel Agent</span>
+      </h2>
+      <p class="section-subtitle text-center">
+        Start planning your perfect trip by describing your travel dreams below
+      </p>
+    </div>
+
+    <!-- Chat Messages Container -->
+    <div class="chat-container">
+      <div id="chat" class="chat" aria-live="polite" aria-label="Chat messages">
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+          <div class="welcome-avatar">✨</div>
+          <div class="welcome-content">
+            <h4>Welcome to Guidely.ai!</h4>
+            <p>I'm your AI travel companion. Tell me where you'd like to go, when you're traveling, and what interests you most. I'll create both popular and unique travel plans just for you!</p>
+            <div class="welcome-examples">
+              <p><strong>Try these examples:</strong></p>
+              <div class="example-buttons">
+                <button class="example-btn" data-example="Plan a 7-day romantic trip to Paris in spring with museums and fine dining">
+                  🇫🇷 Romantic Paris
+                </button>
+                <button class="example-btn" data-example="5-day adventure in Tokyo with temples, food markets, and modern culture">
+                  🇯🇵 Tokyo Adventure
+                </button>
+                <button class="example-btn" data-example="Week-long backpacking trip to Costa Rica focused on wildlife and beaches">
+                  🇨🇷 Costa Rica Wildlife
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Dynamic messages will be added here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Enhanced Chat Form -->
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <div class="input-container">
+        <label for="chat-input" class="sr-only">Travel request</label>
+        <input 
+          id="chat-input" 
+          class="input" 
+          name="query" 
+          type="text" 
+          placeholder="Describe your dream trip... (e.g., '5-day cultural trip to Japan with temples and food experiences')" 
+          required 
+          maxlength="500"
+        />
+        <div class="input-actions">
+          <button id="chat-submit" class="btn btn-primary" type="submit" aria-label="Send message">
+            <span class="btn-text">Send</span>
+            <span class="btn-icon">🚀</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button id="chat-clear" class="btn btn-ghost btn-small" type="button" aria-label="Clear chat history">
+          <span>🗑️ Clear Chat</span>
+        </button>
+        <div class="char-counter">
+          <span id="char-count">0</span>/500
+        </div>
+      </div>
+    </form>
+
+    <!-- Tips and Examples -->
+    <div class="chat-tips">
+      <div class="tip-card">
+        <h4>💡 Pro Tips for Better Results:</h4>
+        <ul>
+          <li>Mention your travel dates or season</li>
+          <li>Include your interests (culture, food, adventure, relaxation)</li>
+          <li>Specify your budget range if relevant</li>
+          <li>Tell me if you prefer popular spots or hidden gems</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Preview Section -->
+  <section class="features-preview">
+    <div class="section-header text-center">
+      <h2 class="section-title">
+        Why Choose <span class="gradient-text">Guidely.ai</span>?
+      </h2>
+      <p class="section-subtitle">
+        Powered by cutting-edge AI technology to make your travel planning effortless
+      </p>
+    </div>
+    
+    <div class="grid three-col">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Dual Perspectives</h3>
+        <p>Get both mainstream must-see attractions and unique off-the-beaten-path experiences in every plan.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🌟</div>
+        <h3>Real-time Intelligence</h3>
+        <p>AI analyzes current weather, costs, and local insights to give you the most up-to-date recommendations.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Results</h3>
+        <p>No waiting around - get comprehensive travel plans in seconds, not hours of research.</p>
+      </div>
+    </div>
+    
+    <div class="text-center">
+      <a href="{{ url_for('features') }}" class="btn btn-primary">
+        Explore All Features
+      </a>
+    </div>
+  </section>
+{% endblock %}

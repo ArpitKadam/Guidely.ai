@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 
@@ -7,6 +8,17 @@ try:
     import colorlog
 except ImportError:
     colorlog = None
+
+
+class SafeFormatter(logging.Formatter):
+    """Formatter that prevents UnicodeEncodeError crashes."""
+    def format(self, record):
+        try:
+            return super().format(record)
+        except UnicodeEncodeError:
+            # Replace unsupported characters with '?'
+            record.msg = record.getMessage().encode("ascii", errors="replace").decode()
+            return super().format(record)
 
 
 class Logger:
@@ -25,20 +37,24 @@ class Logger:
             logger.setLevel(logging.DEBUG)
             logger.propagate = False
 
-            # Prevent adding multiple handlers if already added
             if not logger.handlers:
-
-                # --------- File Handler (No Color) ----------
-                file_handler = RotatingFileHandler(log_file_path, maxBytes=5 * 1024 * 1024, backupCount=3)
-                file_formatter = logging.Formatter(
+                # --------- File Handler ----------
+                file_handler = RotatingFileHandler(
+                    log_file_path, maxBytes=5 * 1024 * 1024, backupCount=3, encoding="utf-8"
+                )
+                file_formatter = SafeFormatter(
                     fmt="[%(asctime)s] %(lineno)4d | %(levelname)-8s | %(message)s",
                     datefmt="%Y-%m-%d %H:%M:%S"
                 )
                 file_handler.setFormatter(file_formatter)
                 logger.addHandler(file_handler)
 
-                # --------- Console Handler (With Colorlog if available) ----------
-                console_handler = logging.StreamHandler()
+                # --------- Console Handler ----------
+                console_handler = logging.StreamHandler(sys.stdout)
+
+                # Force UTF-8 on Windows console
+                if hasattr(console_handler.stream, "reconfigure"):
+                    console_handler.stream.reconfigure(encoding="utf-8")
 
                 if colorlog:
                     console_formatter = colorlog.ColoredFormatter(
@@ -53,7 +69,7 @@ class Logger:
                         }
                     )
                 else:
-                    console_formatter = logging.Formatter(
+                    console_formatter = SafeFormatter(
                         fmt="[%(asctime)s] %(lineno)4d | %(levelname)-8s | %(message)s",
                         datefmt="%Y-%m-%d %H:%M:%S"
                     )
@@ -66,4 +82,4 @@ class Logger:
         return cls._logger_instance
 
 
-logger = Logger.get_logger("Guildely.ai Logger")
+logger = Logger.get_logger("Guidely.ai Logger")

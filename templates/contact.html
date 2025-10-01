@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="page-header">
+    <h1 class="title">Contact</h1>
+    <p class="subtitle">We’d love to hear from you.</p>
+  </section>
+
+  <section class="card profile-card">
+    <div class="profile-header">
+      <div class="profile-info">
+        <h2 class="card-title">Arpit Sachin Kadam</h2>
+        <p class="muted">AI/ML Engineer | Computer Vision & NLP Enthusiast | Final Year AIML Student</p>
+        <p>
+          Passionate about building scalable AI/ML solutions in healthcare, finance, and automation. 
+          Experienced with FastAPI, Flask, Streamlit, Docker, PyTorch, TensorFlow, and MLOps tools.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Get in Touch</h2>
+    <p class="card-body">
+      You can reach me directly at:
+      <a class="link" href="mailto:arpitkadam922@gmail.com">arpitkadam922@gmail.com</a>
+    </p>
+
+    <h3 class="card-subtitle">Connect with me</h3>
+    <ul class="social-links">
+      <li><a href="https://arpit-kadam.netlify.app/" target="_blank">🌐 Personal Website</a></li>
+      <li><a href="https://www.linkedin.com/in/arpitkadam/" target="_blank">💼 LinkedIn</a></li>
+      <li><a href="https://github.com/arpitkadam" target="_blank">💻 GitHub</a></li>
+      <li><a href="https://www.kaggle.com/arpitkadam" target="_blank">📊 Kaggle</a></li>
+      <li><a href="https://twitter.com/arpitkadam5" target="_blank">🐦 Twitter</a></li>
+      <li><a href="https://www.instagram.com/arpit__kadam/" target="_blank">📸 Instagram</a></li>
+      <li><a href="https://buymeacoffee.com/arpitkadam" target="_blank">☕ Buy Me a Coffee</a></li>
+    </ul>
+  </section>
+
+  <section class="card glass">
+    <h2 class="card-title">Important Links</h2>
+    <div class="badges-grid">
+      <a class="badge-link" href="https://arpit-kadam.netlify.app/" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Personal Website badge" src="https://img.shields.io/badge/Personal-4CAF50?style=for-the-badge&logo=googlechrome&logoColor=white">
+      </a>
+      <a class="badge-link" href="mailto:arpitkadam922@gmail.com" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Gmail badge" src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://www.linkedin.com/in/arpitkadam/" target="_blank" rel="noopener">
+        <img class="badge-img" alt="LinkedIn badge" src="https://img.shields.io/badge/LinkedIn-0077B5?&style=for-the-badge&logo=linkedin&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://dagshub.com/ArpitKadam" target="_blank" rel="noopener">
+        <img class="badge-img" alt="DAGsHub badge" src="https://img.shields.io/badge/DAGsHub-231F20?style=for-the-badge&logo=dagshub&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://twitter.com/arpitkadam5" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Twitter badge" src="https://img.shields.io/badge/Twitter-1DA1F2?&style=for-the-badge&logo=twitter&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://dev.to/arpitkadam" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Dev.to badge" src="https://img.shields.io/badge/Dev.to-0A0A0A?&style=for-the-badge&logo=dev.to&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://www.kaggle.com/arpitkadam" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Kaggle badge" src="https://img.shields.io/badge/Kaggle-20BEFF?&style=for-the-badge&logo=kaggle&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://www.instagram.com/arpit__kadam/" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Instagram badge" src="https://img.shields.io/badge/Instagram-E1306C?&style=for-the-badge&logo=instagram&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://github.com/arpitkadam" target="_blank" rel="noopener">
+        <img class="badge-img" alt="GitHub badge" src="https://img.shields.io/badge/GitHub-181717?&style=for-the-badge&logo=github&logoColor=white">
+      </a>
+      <a class="badge-link" href="https://buymeacoffee.com/arpitkadam" target="_blank" rel="noopener">
+        <img class="badge-img" alt="Buy Me a Coffee badge" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FB7A1E?style=for-the-badge&logo=buymeacoffee&logoColor=white">
+      </a>
+    </div>
+
+    <div class="md-tools">
+      <button id="show-links-md" class="btn btn-ghost" type="button" aria-expanded="false">Show Markdown</button>
+      <button id="copy-links-md" class="btn" type="button">Copy</button>
+      <button id="download-links-md" class="btn btn-primary" type="button">Download .md</button>
+    </div>
+
+    <div id="links-md-panel" class="md-panel" role="region" aria-label="Important links markdown" hidden aria-hidden="true">
+      <textarea id="links-md-text" spellcheck="false"></textarea>
+      <div class="md-actions">
+        <button id="copy-links-md" class="btn" type="button">Copy</button>
+      </div>
+    </div>
+  </section>
+{% endblock %}

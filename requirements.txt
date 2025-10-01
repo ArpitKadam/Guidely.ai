@@ -15,6 +15,7 @@ langchain-experimental
 fastapi
 streamlit
 uvicorn
+flask
 pydantic
 httpx
 requests

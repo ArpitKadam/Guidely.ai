@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1 class="title">About <span class="highlight">Guidely.ai</span></h1>
+    <p class="subtitle">Your AI-powered travel companion</p>
+  </section>
+
+  <!-- Main Content Grid -->
+  <section class="grid two-col">
+    
+    <!-- What is Guidely.ai -->
+    <div class="card">
+      <h2 class="card-title">What is Guidely.ai?</h2>
+      <p class="card-body">
+        Guidely.ai is designed to make travel planning effortless. Simply share your destination, trip duration, 
+        and personal interests, and Guidely.ai will generate two options:
+      </p>
+      <ul class="card-list">
+        <li><strong>Mainstream Plan</strong> – covers the most popular attractions and highlights.</li>
+        <li><strong>Offbeat Plan</strong> – explores unique local gems and hidden experiences.</li>
+      </ul>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="card">
+      <h2 class="card-title">Tech Stack</h2>
+      <ul class="card-list" role="list">
+        <li><span class="emoji">🧠</span> LangGraph + Groq LLM for AI reasoning</li>
+        <li><span class="emoji">⚡</span> FastAPI backend for performance</li>
+        <li><span class="emoji">🍃</span> Flask (HTML/CSS/JS) for a simple, lightweight frontend</li>
+      </ul>
+    </div>
+
+    <!-- Disclaimer / Note -->
+    <div class="card">
+      <h2 class="card-title">Before You Travel</h2>
+      <p class="card-body muted">
+        Guidely.ai provides AI-generated suggestions to help kickstart your planning. 
+        Always double-check local weather, transport, accommodation, and costs 
+        before making final bookings.
+      </p>
+    </div>
+
+  </section>
+
+{% endblock %}
